@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 8569281004397899552}
   - component: {fileID: 8307164082346431543}
   - component: {fileID: 3189262754181740948}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,12 +101,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 8569281004397899552}
-  cCollider: {fileID: 0}
-  runSpeed: 10
-  ySpeed: 6
+  cCollider: {fileID: 3189262754181740948}
+  runSpeed: 40
   yAct: 1
   hitted: 0
   animationController: {fileID: 8307164082346431543}
+  cheackPoint:
+    x: 0
+    y: 0
+    level: 
 --- !u!50 &8569281004397899552
 Rigidbody2D:
   serializedVersion: 4
@@ -187,6 +190,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.038833857, y: -0.6319896}
-  m_Size: {x: 0.600472, y: 0.61795115}
+  m_Offset: {x: -0.038833857, y: -0.34003437}
+  m_Size: {x: 0.600472, y: 1.2018616}
   m_Direction: 0
