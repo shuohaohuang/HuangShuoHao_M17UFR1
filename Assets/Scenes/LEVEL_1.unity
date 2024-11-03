@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 395774799}
   m_Layer: 0
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1429,8 +1429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 0}
-  SpawnPosition: {x: 0, y: 0}
-  nextScene: 
+  SpawnPosition: {x: -12, y: -4.9}
+  nextScene: LEVEL_2&4
 --- !u!61 &1253426102
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1534,7 +1534,7 @@ GameObject:
   - component: {fileID: 1513869966}
   - component: {fileID: 1513869969}
   - component: {fileID: 1513869968}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CheackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1620,7 +1620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f27bc6f41751eeb428becc4508b8a58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: LEVEL_1
+  destroyOntrigger: 0
 --- !u!61 &1513869969
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1708,17 +1708,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2238708861317766961, guid: 43f713d94b8f2424f86a0e73283c13d1, type: 3}
-      propertyPath: runSpeed
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 4906628208716648650, guid: 43f713d94b8f2424f86a0e73283c13d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.5
+      value: -11.54
       objectReference: {fileID: 0}
     - target: {fileID: 4906628208716648650, guid: 43f713d94b8f2424f86a0e73283c13d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.81
+      value: -4.9
       objectReference: {fileID: 0}
     - target: {fileID: 4906628208716648650, guid: 43f713d94b8f2424f86a0e73283c13d1, type: 3}
       propertyPath: m_LocalPosition.z

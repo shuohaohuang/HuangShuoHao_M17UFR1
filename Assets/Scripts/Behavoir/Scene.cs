@@ -15,7 +15,7 @@ public class Scene : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == Constants.PlayeTag)
+        if (collision.CompareTag(Constants.PlayeTag))
         {
             collision.gameObject.transform.position=SpawnPosition;
             SceneManager.LoadSceneAsync(nextScene);
