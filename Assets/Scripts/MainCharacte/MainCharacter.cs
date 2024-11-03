@@ -1,24 +1,26 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainCharacter : MonoBehaviour
 {
-    // Start is called before the first frame update
     public static MainCharacter instance;
 
-    [SerializeField] Rigidbody2D Character;
-    [SerializeField] Collider2D cCollider;
+    [SerializeField]
+    Rigidbody2D Character;
 
-    [SerializeField] private float runSpeed, ySpeed;
+    [SerializeField]
+    Collider2D cCollider;
 
-    [SerializeField] private bool yAct = true;
+    [SerializeField]
+    private float runSpeed;
+
+    [SerializeField]
+    private bool yAct = true;
     public bool hitted = false;
 
-    [SerializeField] private Animator animationController;
-
+    [SerializeField]
+    private Animator animationController;
     public CheackPoint cheackPoint;
 
     private void Awake()
@@ -27,26 +29,23 @@ public class MainCharacter : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this);
-
         }
         else
         {
             Destroy(gameObject);
         }
         gameObject.tag = Constants.PlayeTag;
-        cheackPoint = new(6, 1, "LEVEL_2");
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleDead(hitted);
+        if (!hitted)
+        {
+            HandleMovement();
 
-        HandleMovement();
-
-        HandleGravity();
-
-
+            HandleGravity();
+        }
     }
 
     void HandleMovement()
@@ -58,12 +57,12 @@ public class MainCharacter : MonoBehaviour
             Vector3 movement = new(runSpeed * horizontal * Time.deltaTime, 0, 0);
             Character.position = transform.position + movement;
 
-
             Character.transform.localScale = new Vector3(Mathf.Sign(horizontal), 1, 1);
         }
 
-        animationController.SetFloat("Speed", Mathf.Abs(horizontal * runSpeed));
+        animationController.SetFloat("SPEED", Mathf.Abs(horizontal * runSpeed));
     }
+
     void HandleGravity()
     {
         if (yAct && Input.GetKeyDown(KeyCode.Space))
@@ -74,26 +73,37 @@ public class MainCharacter : MonoBehaviour
 
             Character.transform.Rotate(180, 0, 0);
 
-            ySpeed = -ySpeed;
-
             yAct = false;
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         yAct = true;
         animationController.SetBool("JUMP", false);
     }
 
-    void HandleDead(bool control)
+    public void HandleDead()
     {
-        cCollider.isTrigger=control;
-        animationController.SetBool("HIT", control);
+        hitted = true;
+        animationController.SetBool("HIT", true);
     }
 
     public void Spawn()
     {
-        cCollider.isTrigger=false;
+        //reset rigidBody
+        Character.gravityScale = math.abs(Character.gravityScale);
+        transform.rotation = Quaternion.identity;
         Character.position = new(cheackPoint.x, cheackPoint.y);
+        Character.velocity = new(0, 0);
+
+        animationController.SetBool("HIT", false);
+        hitted = false;
+        SceneManager.LoadScene(cheackPoint.level);
+    }
+
+    public void SetCheackPoint(float x, float y, string scene)
+    {
+        cheackPoint = new(x, y, scene);
     }
 }
