@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +7,19 @@ public class SetCheackPoint : MonoBehaviour
 {
     [SerializeField]
     bool destroyOntrigger;
+
+    [SerializeField]
+    int id;
+    static Dictionary<int, bool> cheakPoints = new();
+
+    void Start()
+    {
+        if (cheakPoints.ContainsKey(id))
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D player)
     {
         if (player.CompareTag(Constants.PlayeTag))
@@ -16,7 +31,17 @@ public class SetCheackPoint : MonoBehaviour
                     this.transform.position.y,
                     SceneManager.GetActiveScene().name
                 );
-            if (destroyOntrigger) Destroy(gameObject);
+            if (destroyOntrigger)
+            {
+                cheakPoints.Add(id, true);
+
+                Destroy(gameObject);
+            }
         }
+    }
+
+    public static void Clear()
+    {
+        cheakPoints.Clear();
     }
 }

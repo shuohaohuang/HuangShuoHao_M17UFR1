@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class launcher : MonoBehaviour
+public class Launcher : MonoBehaviour
 {
     public SpikeProjectile launcherPrefab;
 
@@ -30,4 +30,5 @@ public class launcher : MonoBehaviour
             yield return new WaitForSeconds(repeatEachSecs);
         }
     }
+
 }

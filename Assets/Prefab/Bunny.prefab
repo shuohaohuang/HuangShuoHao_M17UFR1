@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4712491330953091486}
   - component: {fileID: 5795845481158716290}
   - component: {fileID: 1557638398137889050}
+  - component: {fileID: 929346763837347676}
   m_Layer: 2
   m_Name: Bunny
   m_TagString: Untagged
@@ -185,6 +186,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bunny: {fileID: 5795845481158716290}
   runSpeed: 20
-  raycast: 0
   distance: 0
   direction: 1
+--- !u!114 &929346763837347676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963111580743519799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126def62028a6334892efaf761ba90d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

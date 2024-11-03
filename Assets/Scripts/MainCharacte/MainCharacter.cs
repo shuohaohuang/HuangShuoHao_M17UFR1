@@ -14,7 +14,7 @@ public class MainCharacter : MonoBehaviour
 
     [SerializeField]
     private float runSpeed,
-        distance=1;
+        distance = 1;
 
     [SerializeField]
     private bool yAct = true;
@@ -43,7 +43,7 @@ public class MainCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!hitted)
+        if (!hitted && !Menu.isPaused)
         {
             HandleMovement();
 
@@ -112,5 +112,14 @@ public class MainCharacter : MonoBehaviour
     public void SetCheackPoint(float x, float y, string scene)
     {
         cheackPoint = new(x, y, scene);
+    }
+
+    public static void DestroySingleton()
+    {
+        if (instance != null)
+        {
+            Destroy(instance.gameObject);
+            instance = null;
+        }
     }
 }

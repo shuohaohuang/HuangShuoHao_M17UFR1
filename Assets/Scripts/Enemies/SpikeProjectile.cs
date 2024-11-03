@@ -27,11 +27,6 @@ public class SpikeProjectile : MonoBehaviour
         stack.Pop().gameObject.SetActive(true);
     }
 
-    public void Peek()
-    {
-        Debug.Log(stack.Peek());
-    }
-
     public void GetProjectile(Vector3 direction, Vector3 position, Quaternion rotation)
     {
         SpikeProjectile newProjectile;
@@ -39,8 +34,7 @@ public class SpikeProjectile : MonoBehaviour
         {
             newProjectile = stack.Pop();
             newProjectile.gameObject.SetActive(true);
-            newProjectile.gameObject.transform.position = position;
-            newProjectile.gameObject.transform.rotation = rotation;
+            newProjectile.gameObject.transform.SetPositionAndRotation(position, rotation);
         }
         else
         {
@@ -55,9 +49,11 @@ public class SpikeProjectile : MonoBehaviour
     {
         if (player.gameObject.CompareTag(Constants.PlayeTag))
         {
-            stack.Clear();
             player.gameObject.GetComponent<MainCharacter>().HandleDead();
         }
         Push(this);
+    }
+    void OnDestroy(){
+        stack.Clear();
     }
 }
