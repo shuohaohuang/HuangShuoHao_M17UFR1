@@ -13,7 +13,8 @@ public class MainCharacter : MonoBehaviour
     Collider2D cCollider;
 
     [SerializeField]
-    private float runSpeed;
+    private float runSpeed,
+        distance;
 
     [SerializeField]
     private bool yAct = true;
@@ -22,6 +23,8 @@ public class MainCharacter : MonoBehaviour
     [SerializeField]
     private Animator animationController;
     public CheackPoint cheackPoint;
+
+    RaycastHit2D hit;
 
     private void Awake()
     {
@@ -65,22 +68,26 @@ public class MainCharacter : MonoBehaviour
 
     void HandleGravity()
     {
+        hit = Physics2D.Raycast(transform.position, -transform.up, distance);
+        Debug.DrawLine(transform.position, transform.position - transform.up * distance, Color.red);
+
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
+        {
+            yAct = true;
+        }
+        else
+        {
+            yAct = false;
+        }
+
         if (yAct && Input.GetKeyDown(KeyCode.Space))
         {
-            animationController.SetBool("JUMP", true);
-
             Character.gravityScale = -Character.gravityScale;
 
             Character.transform.Rotate(180, 0, 0);
-
-            yAct = false;
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        yAct = true;
-        animationController.SetBool("JUMP", false);
+        animationController.SetBool("JUMP", !yAct);
     }
 
     public void HandleDead()

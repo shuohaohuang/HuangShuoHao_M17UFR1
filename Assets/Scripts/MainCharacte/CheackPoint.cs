@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections;
-using UnityEngine;
 
 [System.Serializable]
-public struct CheackPoint
+public class CheackPoint
 {
     public float x;
     public float y;
