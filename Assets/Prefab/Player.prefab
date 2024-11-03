@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1340413193
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,6 +103,7 @@ MonoBehaviour:
   Character: {fileID: 8569281004397899552}
   cCollider: {fileID: 3189262754181740948}
   runSpeed: 40
+  distance: 1
   yAct: 1
   hitted: 0
   animationController: {fileID: 8307164082346431543}

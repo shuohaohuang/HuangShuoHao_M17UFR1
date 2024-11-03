@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class SetCheackPoint : MonoBehaviour
 {
+    [SerializeField]
+    bool destroyOntrigger;
     void OnTriggerEnter2D(Collider2D player)
     {
         if (player.CompareTag(Constants.PlayeTag))
@@ -14,7 +16,7 @@ public class SetCheackPoint : MonoBehaviour
                     this.transform.position.y,
                     SceneManager.GetActiveScene().name
                 );
-            Destroy(gameObject);
+            if (destroyOntrigger) Destroy(gameObject);
         }
     }
 }
