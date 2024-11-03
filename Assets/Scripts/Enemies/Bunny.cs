@@ -13,6 +13,7 @@ public class Bunny : MonoBehaviour
     private readonly float raycastYDistance = 0.8f;
     private float rayYOffset = 0.8f;
     private readonly float rayXOffSet = 0.5f;
+
     [SerializeField]
     int distance,
         direction;
@@ -84,7 +85,9 @@ public class Bunny : MonoBehaviour
         }
     }
 
-   void OnCollisionEnter2D(Collider2D collision){
-
+    private void OnCollisionEnter2D(Collision2D player) {
+        if(player.gameObject.tag==Constants.PlayeTag){
+            player.gameObject.GetComponent<MainCharacter>().HandleDead();
+        }
     }
 }
