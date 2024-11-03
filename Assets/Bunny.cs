@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bunny : MonoBehaviour
@@ -8,11 +9,10 @@ public class Bunny : MonoBehaviour
 
     [SerializeField]
     float runSpeed;
-    float raycastXDistance = 0.8f,
-        raycastYDistance = 0.8f,
-        rayYOffset = 0.8f,
-        rayXOffSet = 0.5f;
-
+    private readonly float raycastXDistance = 0.8f;
+    private readonly float raycastYDistance = 0.8f;
+    private float rayYOffset = 0.8f;
+    private readonly float rayXOffSet = 0.5f;
     [SerializeField]
     int distance,
         direction;
@@ -82,5 +82,9 @@ public class Bunny : MonoBehaviour
         {
             return false;
         }
+    }
+
+   void OnCollisionEnter2D(Collider2D collision){
+
     }
 }
