@@ -14,7 +14,7 @@ public class MainCharacter : MonoBehaviour
 
     [SerializeField]
     private float runSpeed,
-        distance;
+        distance=1;
 
     [SerializeField]
     private bool yAct = true;

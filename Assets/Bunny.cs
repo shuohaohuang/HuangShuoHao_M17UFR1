@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,14 +7,18 @@ public class Bunny : MonoBehaviour
     Rigidbody2D bunny;
 
     [SerializeField]
-    float runSpeed,
-        raycast;
+    float runSpeed;
+    float raycastXDistance = 0.8f,
+        raycastYDistance = 0.8f,
+        rayYOffset = 0.8f,
+        rayXOffSet = 0.5f;
 
     [SerializeField]
     int distance,
         direction;
 
-    RaycastHit2D raycastHit2;
+    RaycastHit2D rayY;
+    Vector2 facing;
 
     // Start is called before the first frame update
     void Start()
@@ -35,23 +38,49 @@ public class Bunny : MonoBehaviour
 
     void Update()
     {
-        turnArround();
+        TurnArround();
     }
 
-    void turnArround()
+    void TurnArround()
     {
-        Vector2 foward = new(direction, 0);
+        bool hasPath = CheakHasPath();
 
-        bool end = raycastHit2 = Physics2D.Raycast(
-            new(transform.position.x, transform.position.y - raycast),
-            foward,
-            1
-        );
+        bool hasObstacle = CheakHasObstacle();
 
-        if (end)
+        if (hasObstacle || !hasPath)
         {
             direction = -direction;
+            rayYOffset = -rayYOffset;
             transform.Rotate(0, 180, 0);
+        }
+    }
+
+    bool CheakHasObstacle()
+    {
+        facing = direction > 0 ? Vector2.right : Vector2.left;
+
+        return Physics2D.Raycast(
+            new Vector3(transform.position.x, transform.position.y - rayXOffSet),
+            facing,
+            raycastYDistance
+        );
+    }
+
+    bool CheakHasPath()
+    {
+        rayY = Physics2D.Raycast(
+            new(transform.position.x + rayYOffset, transform.position.y),
+            Vector2.down,
+            raycastXDistance
+        );
+
+        if (rayY.collider != null)
+        {
+            return rayY.collider.CompareTag(Constants.GroundTag);
+        }
+        else
+        {
+            return false;
         }
     }
 }
