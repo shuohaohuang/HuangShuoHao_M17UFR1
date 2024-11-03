@@ -1,5 +1,3 @@
-# VVVVVV
-
 # The Zorro
 
 ## Introducción
