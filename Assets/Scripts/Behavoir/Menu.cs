@@ -13,6 +13,8 @@ public class Menu : MonoBehaviour
 
     public void Startgame()
     {
+        isPaused = false;
+        Time.timeScale = 1;
         MainCharacter.DestroySingleton();
         SceneManager.LoadScene(level);
     }
@@ -55,5 +57,4 @@ public class Menu : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.UnloadSceneAsync("PAUSE_MENU");
     }
-
 }
