@@ -31,13 +31,13 @@ public class Bunny : MonoBehaviour
     {
         while (true)
         {
-            Vector3 movement = new(runSpeed * direction * Time.deltaTime, 0, 0);
+            Vector3 movement = new(runSpeed * direction, 0, 0);
             bunny.position = transform.position + movement;
             yield return null;
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         TurnArround();
     }
