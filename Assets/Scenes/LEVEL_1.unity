@@ -1621,6 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOntrigger: 0
+  id: 0
 --- !u!61 &1513869969
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1708,6 +1709,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2238708861317766961, guid: 43f713d94b8f2424f86a0e73283c13d1, type: 3}
+      propertyPath: runSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4906628208716648650, guid: 43f713d94b8f2424f86a0e73283c13d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.54

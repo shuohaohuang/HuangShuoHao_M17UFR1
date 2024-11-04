@@ -12,23 +12,27 @@ public class Launcher : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(Shoot());
+        StartCoroutine(DelayStart());
     }
 
-    private IEnumerator Shoot()
+    private IEnumerator DelayStart()
     {
         yield return new WaitForSeconds(startAfterSecs);
+        yield return Shoot();
+    }
+    private IEnumerator Shoot()
+    {
 
-        while (true)
-        {
+
         launcherPrefab.GetProjectile(
             this.transform.forward,
             this.transform.position,
             this.transform.rotation
         );
 
-            yield return new WaitForSeconds(repeatEachSecs);
-        }
+        yield return new WaitForSeconds(repeatEachSecs);
+
+        yield return Shoot();
     }
 
 }
