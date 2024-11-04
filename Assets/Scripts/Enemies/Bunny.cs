@@ -21,25 +21,18 @@ public class Bunny : MonoBehaviour
     RaycastHit2D rayY;
     Vector2 facing;
 
-    // Start is called before the first frame update
-    void Start()
+    void Patrol()
     {
-        StartCoroutine(Patrol());
-    }
 
-    IEnumerator Patrol()
-    {
-        while (true)
-        {
-            Vector3 movement = new(runSpeed * direction, 0, 0);
-            bunny.position = transform.position + movement;
-            yield return null;
-        }
+        Vector3 movement = new(runSpeed * direction, 0, 0);
+        bunny.position = transform.position + movement;
+
     }
 
     void FixedUpdate()
     {
         TurnArround();
+        Patrol();
     }
 
     void TurnArround()
@@ -85,8 +78,10 @@ public class Bunny : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D player) {
-        if(player.gameObject.tag==Constants.PlayeTag){
+    private void OnCollisionEnter2D(Collision2D player)
+    {
+        if (player.gameObject.tag == Constants.PlayeTag)
+        {
             player.gameObject.GetComponent<MainCharacter>().HandleDead();
         }
     }
