@@ -41,8 +41,9 @@ public class MainCharacter : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+     void FixedUpdate()
     {
+
         if (!hitted && !Menu.isPaused)
         {
             HandleMovement();
@@ -57,7 +58,7 @@ public class MainCharacter : MonoBehaviour
 
         if (horizontal != 0)
         {
-            Vector3 movement = new(runSpeed * horizontal * Time.deltaTime, 0, 0);
+            Vector3 movement = new(runSpeed * horizontal, 0, 0);
             Character.position = transform.position + movement;
 
             Character.transform.localScale = new Vector3(Mathf.Sign(horizontal), 1, 1);

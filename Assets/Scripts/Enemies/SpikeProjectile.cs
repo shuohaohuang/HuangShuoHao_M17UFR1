@@ -15,7 +15,9 @@ public class SpikeProjectile : MonoBehaviour
 
     [SerializeField]
     float speed = 30f;
-
+    private void Update() {
+        Debug.Log(SpikeProjectile.stack.Count);
+    }
     public void Push(SpikeProjectile projectile)
     {
         projectile.gameObject.SetActive(false);
