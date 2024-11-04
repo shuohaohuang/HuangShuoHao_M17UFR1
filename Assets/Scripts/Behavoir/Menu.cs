@@ -13,6 +13,8 @@ public class Menu : MonoBehaviour
 
     public void Startgame()
     {
+        isPaused = false;
+        Time.timeScale = 1;
         MainCharacter.DestroySingleton();
         SceneManager.LoadScene(level);
     }
@@ -24,7 +26,12 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("INITIAL_MENU");
     }
 
-    public static void getPause()
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public static void GetPause()
     {
         if (isPaused)
         {
@@ -38,17 +45,16 @@ public class Menu : MonoBehaviour
 
     public static void Pause()
     {
-        isPaused=true;
+        isPaused = true;
         Time.timeScale = 0;
         SceneManager.LoadScene("PAUSE_MENU", LoadSceneMode.Additive);
     }
 
     public static void Continue()
     {
-        isPaused=false;
+        isPaused = false;
 
         Time.timeScale = 1;
         SceneManager.UnloadSceneAsync("PAUSE_MENU");
     }
-
 }

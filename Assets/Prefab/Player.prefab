@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character: {fileID: 8569281004397899552}
   cCollider: {fileID: 3189262754181740948}
-  runSpeed: 40
+  runSpeed: 0.1
   distance: 1
   yAct: 1
   hitted: 0

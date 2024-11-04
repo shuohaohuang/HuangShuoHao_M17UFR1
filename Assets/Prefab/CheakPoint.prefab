@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOntrigger: 1
+  id: 1
 --- !u!61 &7687756580080071029
 BoxCollider2D:
   m_ObjectHideFlags: 0
