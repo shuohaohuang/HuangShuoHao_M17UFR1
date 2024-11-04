@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -40,30 +41,28 @@ public class MainCharacter : MonoBehaviour
         }
         gameObject.tag = Constants.PlayeTag;
     }
+
     void Update()
     {
+        horizontal = Input.GetAxisRaw("Horizontal");
         if (!hitted && !Menu.isPaused)
         {
-            horizontal = Input.GetAxisRaw("Horizontal");
             HandleGravity();
-
         }
-
+        animationController.SetFloat("SPEED", Mathf.Abs(horizontal * runSpeed));
     }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (!hitted && !Menu.isPaused)
         {
             HandleMovement();
-
         }
     }
 
     void HandleMovement()
     {
-
         if (horizontal != 0)
         {
             Vector3 movement = new(runSpeed * horizontal, 0, 0);
@@ -71,8 +70,6 @@ public class MainCharacter : MonoBehaviour
 
             Character.transform.localScale = new Vector3(Mathf.Sign(horizontal), 1, 1);
         }
-
-        animationController.SetFloat("SPEED", Mathf.Abs(horizontal * runSpeed));
     }
 
     void HandleGravity()
@@ -95,8 +92,9 @@ public class MainCharacter : MonoBehaviour
 
             Character.transform.Rotate(180, 0, 0);
         }
-
+        
         animationController.SetBool("JUMP", !yAct);
+
     }
 
     public void HandleDead()
@@ -108,15 +106,31 @@ public class MainCharacter : MonoBehaviour
     public void Spawn()
     {
         //reset rigidBody
+
         Character.gravityScale = math.abs(Character.gravityScale);
         transform.rotation = Quaternion.identity;
         Character.position = new(cheackPoint.x, cheackPoint.y);
         Character.velocity = new(0, 0);
-Debug.Log("me ejecuto");
         animationController.SetBool("HIT", false);
-        SceneManager.LoadScene(cheackPoint.level);
-        hitted = false;
+        StartCoroutine(SpawnEffect());
+    }
 
+    IEnumerator SpawnEffect()
+    {
+        SceneManager.LoadScene(cheackPoint.level);
+
+        gameObject.GetComponent<Animator>().enabled = false;
+        for (int i = 0; i < 4; i++)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+            yield return new WaitForSeconds(0.1f);
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+            yield return new WaitForSeconds(0.1f);
+        }
+        hitted = false;
+        gameObject.GetComponent<Animator>().enabled = true;
     }
 
     public void SetCheackPoint(float x, float y, string scene)
