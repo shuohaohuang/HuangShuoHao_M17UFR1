@@ -415,7 +415,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1958672446}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: getPause
+        m_MethodName: GetPause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -758,7 +758,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1958672446}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: Startgame
+        m_MethodName: GoToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

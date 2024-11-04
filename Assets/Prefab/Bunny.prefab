@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bunny: {fileID: 5795845481158716290}
-  runSpeed: 20
+  runSpeed: 0.2
   distance: 0
   direction: 1
 --- !u!114 &929346763837347676

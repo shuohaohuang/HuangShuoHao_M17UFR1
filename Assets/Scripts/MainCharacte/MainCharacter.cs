@@ -24,6 +24,7 @@ public class MainCharacter : MonoBehaviour
     private Animator animationController;
     public CheackPoint cheackPoint;
 
+    float horizontal;
     RaycastHit2D hit;
 
     private void Awake()
@@ -39,22 +40,29 @@ public class MainCharacter : MonoBehaviour
         }
         gameObject.tag = Constants.PlayeTag;
     }
+    void Update()
+    {
+        if (!hitted && !Menu.isPaused)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+            HandleGravity();
 
+        }
+
+    }
     // Update is called once per frame
-     void FixedUpdate()
+    void FixedUpdate()
     {
 
         if (!hitted && !Menu.isPaused)
         {
             HandleMovement();
 
-            HandleGravity();
         }
     }
 
     void HandleMovement()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
 
         if (horizontal != 0)
         {
@@ -104,10 +112,11 @@ public class MainCharacter : MonoBehaviour
         transform.rotation = Quaternion.identity;
         Character.position = new(cheackPoint.x, cheackPoint.y);
         Character.velocity = new(0, 0);
-
+Debug.Log("me ejecuto");
         animationController.SetBool("HIT", false);
-        hitted = false;
         SceneManager.LoadScene(cheackPoint.level);
+        hitted = false;
+
     }
 
     public void SetCheackPoint(float x, float y, string scene)

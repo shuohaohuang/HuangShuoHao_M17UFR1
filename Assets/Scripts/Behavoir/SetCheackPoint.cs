@@ -12,7 +12,7 @@ public class SetCheackPoint : MonoBehaviour
     int id;
     static Dictionary<int, bool> cheakPoints = new();
 
-    void Start()
+    void Awake()
     {
         if (cheakPoints.ContainsKey(id))
         {

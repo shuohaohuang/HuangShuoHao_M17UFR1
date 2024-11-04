@@ -8,7 +8,7 @@ public class PauseController : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)){
-            Menu.getPause();
+            Menu.GetPause();
         }
         
     }
