@@ -22,8 +22,6 @@ public class Launcher : MonoBehaviour
     }
     private IEnumerator Shoot()
     {
-
-
         launcherPrefab.GetProjectile(
             this.transform.forward,
             this.transform.position,
